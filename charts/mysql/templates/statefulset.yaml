@@ -12,6 +12,7 @@ spec:
     matchLabels:
       app.kubernetes.io/name: {{ include "mysql.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
+  serviceName: mysql
   template:
     metadata:
       labels:

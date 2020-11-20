@@ -12,6 +12,7 @@ spec:
     matchLabels:
       app.kubernetes.io/name: {{ include "elasticsearch.name" . }}
       app.kubernetes.io/instance: {{ .Release.Name }}
+  serviceName: elasticsearch
   template:
     metadata:
       labels:
