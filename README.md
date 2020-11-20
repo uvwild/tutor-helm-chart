@@ -1,6 +1,6 @@
 # helm chart for an automated  tutor installation on k8s
 
-This fork has been made necessary due to the number of changes mainly in the helm API.
+This fork became necessary due to the number of changes mainly in the helm API.
 We cant expect things to work a 2 years laster with this technology
 
 ## changes
