@@ -16,3 +16,4 @@ helm --debug install --namespace helmtutor  --generate-name .
 1. version updates of the participating service images
 1. deprecation of ingress api
 1. missing required field "serviceName" in io.k8s.api.apps.v1.StatefulSetSpec
+1. Importing 'lms.djangoapps.courseware' as 'courseware' is no longer supported forces overhang images
