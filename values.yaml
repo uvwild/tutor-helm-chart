@@ -7,19 +7,20 @@ image:
   tag: latest
   pullPolicy: IfNotPresent
 
+
 nameOverride: ""
 fullnameOverride: ""
 
 activateIngress: true
-activateHttps: true
+#activateHttps: true
 
 certmanagerIssuer: letsencrypt
 
 # Tutor configuration parameters
-LMS_HOST: www.myopenedx.com
+LMS_HOST: openedx.otcdemo-19339.gardener.t-systems.net
 CMS_HOST: "studio.{{ .Values.LMS_HOST }}"
-PLATFORM_NAME: My Open edX
-CONTACT_EMAIL: "contact@{{ LMS_HOST }}"
+PLATFORM_NAME: Open Helm edX on OTC 19339
+CONTACT_EMAIL: "contact@{{ .Values.MS_HOST }}"
 LANGUAGE_CODE: en
 SECRET_KEY: ""
 
