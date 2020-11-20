@@ -7,3 +7,4 @@ We cant expect things to work a 2 years laster with this technology
 1. requirements.yaml is a requirement now ;)
 1. some small template patches
 1. version updates of the participating service images
+1. deprecation of ingress api
