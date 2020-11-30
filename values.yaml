@@ -21,7 +21,7 @@ certmanagerIssuer: letsencrypt
 
 # Tutor configuration parameters
 LMS_HOST: openedx.otcdemo-19339.gardener.t-systems.net
-CMS_HOST: "studio.openedx.otcdemo-19339.gardener.t-systems.net"
+CMS_HOST: "studio.openedx.demo-19339.gardener.t-systems.net"
 PLATFORM_NAME: "Open Helm edX on OTC 19339"
 CONTACT_EMAIL: dr.uv.wildner.os@gmail.com
 LANGUAGE_CODE: en
