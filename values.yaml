@@ -4,7 +4,7 @@
 
 image:
   repository: uvwild/tutor
-  tag: 10.5.0
+  tag: 10.5.2
   pullPolicy: IfNotPresent
 
 
@@ -66,10 +66,10 @@ ACTIVATE_HTTPS: false
 ACTIVATE_NOTES: false
 ACTIVATE_XQUEUE: false
 
-DOCKER_IMAGE_OPENEDX: overhangio/openedx:10.5.0
-DOCKER_IMAGE_FORUM: overhangio/openedx-forum:10.5.0
-DOCKER_IMAGE_NOTES: overhangio/openedx-notes:10.5.0
-DOCKER_IMAGE_XQUEUE: overhangio/openedx-xqueue:10.5.0
+DOCKER_IMAGE_OPENEDX: overhangio/openedx:10.5.2
+DOCKER_IMAGE_FORUM: overhangio/openedx-forum:10.5.2
+DOCKER_IMAGE_NOTES: overhangio/openedx-notes:10.1.4
+DOCKER_IMAGE_XQUEUE: overhangio/openedx-xqueue:10.1.2
 
 DOCKER_IMAGE_ELASTICSEARCH: elasticsearch:1.5.2
 DOCKER_IMAGE_MEMCACHED: memcached:1.5.2

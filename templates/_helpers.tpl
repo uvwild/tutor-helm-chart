@@ -59,7 +59,7 @@ Spec for a container that renders tutor config files into a volume.
 - name: tutor-config
   image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
   imagePullPolicy: {{ .Values.image.pullPolicy }}
-  args: ["config", "save", "--silent"]
+  args: [ "tutor config save"]
   envFrom:
     - configMapRef:
         name: {{ template "tutor.fullname" . }}
