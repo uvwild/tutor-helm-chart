@@ -20,8 +20,8 @@ ID: 99teYyxXGH1L7XSxo5e7Behw
 certmanagerIssuer: letsencrypt
 
 # Tutor configuration parameters
-LMS_HOST: "openedx.otcdemo.gardener.t-systems.net"
-CMS_HOST: "studio.openedx.otcdemo.gardener.t-systems.net"
+LMS_HOST: "www.edx.otcdemo.gardener.t-systems.net"
+CMS_HOST: "studio.edx.otcdemo.gardener.t-systems.net"
 PLATFORM_NAME: "Open Helm edX on OTC"
 CONTACT_EMAIL: dr.uv.wildner.os@gmail.com
 LANGUAGE_CODE: en
@@ -30,33 +30,6 @@ ANDROID_OAUTH2_SECRET: Xvk31SCnWo9essPwPfEEzgbi
 OPENEDX_SECRET_KEY: k20aCxkxWrd7pqf7mZnbBdIf
 SECRET_KEY: "k20aCxkxWrd7pqf7mZnbBdIf"
 
-JWT_RSA_PRIVATE_KEY: '-----BEGIN RSA PRIVATE KEY-----
-  MIIEogIBAAKCAQEA2G2pKfeNjD+SYXU5GeoSHgxcjMW04WsgQB1YPh7sAyopUkU7
-  qMDf03khtwcFbp9iDLn1CCPOM8Z60lywj2LfEWrAEdB4RyS64Pq7+0qAVnJvA8V3
-  Z3NYODL5bLhbupXvoRP0t0sIhydKYrltR2XkK9H75vKFrol1g+1cuxoiUd8vrDF/
-  ItUsQnOAh9rOaFcYUHdElWS94eLrdZlzryVJHvoSRWkec3Wfu+PMjEGjD+3Uxcc+
-  vrF0w0bhl22ZJHz0uFTBK/E3Ftt8TEKpFfn9bPR4RyHrZoSA4F17ghkweqlhYyti
-  VO0fVcRgUkFq7+63mX0PPaongDK/6B19OZxKpwIDAQABAoIBAFui3se+oaeauRtb
-  m0A+K8qeOEeAZGw3Q/Hxms2+oPZcER/c4Xw7oelztdM9fU7P3B+AUt/N7T5d0N4l
-  0bn8Rm+k78r7JhoVUqz0bMhizIENtbR2lO5v15AAATzHuEsBtfLRNMGw2t0CxUuU
-  sFDVMu1c3Nf1oqV6XQ/tXeB4mcRowH1czdm0dc6AFWd4fuNuzuS76MZx1KLABuqq
-  kGrwhpD9kjgkjwFw7E9mhN/0iV51JIuNe2QgTF6nPFLS8OuDhVj+u9vHv8Srkr5l
-  kJrNnTmGsN+s9dWABYGdpZCNtlaUXmszReUzIJN+wZYuxQ5/W1GDmNBwDNAlQHIp
-  NBPQgS0CgYEA6e97FPmS3f5RXssZ+RX3BQCD131TxcuHwD2KIK+wMM0D9wqh7hx4
-  qbR2Jx2y6BoED6UMu115d1UD/47Pei2GTZk9js4nt6nqlK317QoSdHA9ETV3N/kL
-  7pLkRhpL77qoxwK5jB0zuQzMzG2Mb+/KTZXdgLYGIsQUzwadKKd228MCgYEA7Nd1
-  t6OCxTa5iTjFXnjYQYTaXnaeqDJJFugiCtymNnODmEEv+SWbrGjMVPcgcpgVNGgf
-  H/ZdWE8kVQlPz44Awsjdwjydcck7Zg6jdy/ZtveF6rBkba+l/7fsTpzoN1K/2jDA
-  InbDbOTlsDLPA2S8WFRi001800dOCwN24+bM+00CgYB0huLzdsIOrHDR3C+K4MMU
-  Dcaen4IMI67yNnVIhNsp4+WWuAgjOLFuL0Mvht6oONVPCbMG3a/0njeIpBV7UZP1
-  sWB1cwFbvlroRqMauQqqT4JLwSsqiXbFFwx4Uv8CYiNSRmwwfBdYlSSqq+LpmzNV
-  ZFJam9EAnlWTLkM4jfppywKBgA1G/uhumDQqHzicICRtreHuareE+tv/Ba3tEYt+
-  VysSSrxMWz4iZ5nAvkO9HuqNsBKiC6ylCRKcTTMfNIQ0N8KztArhjwoD9/p+s5dI
-  7XGearl/bgHgKPQvAWZe0X3Ye7zlor/L3KTMKDw6fPR5vz1MbcXewDKv+qYPaajZ
-  FYC5AoGAJdeUjf12NK62UexmFIk7pEzxsp3d6+lE8SJm7Tip/wXB8KplFP19odxf
-  ZfO3bhpMp5bY6biJpKxQnpg3+sTppsPceZOeQgZa21UBIquHB/3LzKO+dJra8Ghr
-  7eO8T37/kR3tvBaFxw3tfDUYap0t4aGPYqixsXa7EFpPQigKlfE=
-  -----END RSA PRIVATE KEY-----'
 
 ACTIVATE_ELASTICSEARCH: true
 ACTIVATE_MONGODB: true
@@ -66,7 +39,7 @@ ACTIVATE_HTTPS: false
 ACTIVATE_NOTES: false
 ACTIVATE_XQUEUE: false
 
-DOCKER_IMAGE_OPENEDX: overhangio/openedx:10.5.2
+DOCKER_IMAGE_OPENEDX: uvwild/openedx:10.5.2
 DOCKER_IMAGE_FORUM: overhangio/openedx-forum:10.5.2
 DOCKER_IMAGE_NOTES: overhangio/openedx-notes:10.1.4
 DOCKER_IMAGE_XQUEUE: overhangio/openedx-xqueue:10.1.2
@@ -138,13 +111,13 @@ openedx:
     pullPolicy: IfNotPresent
 
 lms:
-  replicaCount: 2
+  replicaCount: 1
   service:
     type: ClusterIP
     port: 8000
 
 cms:
-  replicaCount: 2
+  replicaCount: 1
   service:
     type: ClusterIP
     port: 8000
@@ -158,7 +131,7 @@ forum:
     port: 4567
 
 nginx:
-  replicaCount: 2
+  replicaCount: 1
   image:
     pullPolicy: IfNotPresent
   service:

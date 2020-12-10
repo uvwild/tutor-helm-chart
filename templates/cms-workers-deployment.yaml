@@ -35,7 +35,7 @@ spec:
               value: tutor.production
             - name: C_FORCE_ROOT # run celery tasks as root #nofear
               value: "1"
-          command: ["./manage.py", "cms", "celery", "worker", "--loglevel=info", "--hostname=edx.cms.core.default.%%h", "--maxtasksperchild=100"]
+          command: ["./manage.py", "cms", "celery", "worker", "--loglevel=debug", "--hostname=edx.cms.core.default.%%h", "--maxtasksperchild=100"]
           volumeMounts:
             - name: tutor-config
               mountPath: /openedx/edx-platform/cms/envs/tutor/
