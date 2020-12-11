@@ -1,7 +1,7 @@
 # Default values for tutor.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-
+---
 image:
   repository: uvwild/tutor
   tag: 10.5.2
@@ -13,7 +13,7 @@ fullnameOverride: ""
 
 
 activateIngress: true
-#activateHttps: true
+# activateHttps: true
 
 ID: 99teYyxXGH1L7XSxo5e7Behw
 
@@ -39,7 +39,7 @@ ACTIVATE_HTTPS: false
 ACTIVATE_NOTES: false
 ACTIVATE_XQUEUE: false
 
-DOCKER_IMAGE_OPENEDX: uvwild/openedx:10.5.2
+DOCKER_IMAGE_OPENEDX: overhangio/openedx:10.5.2
 DOCKER_IMAGE_FORUM: overhangio/openedx-forum:10.5.2
 DOCKER_IMAGE_NOTES: overhangio/openedx-notes:10.1.4
 DOCKER_IMAGE_XQUEUE: overhangio/openedx-xqueue:10.1.2
