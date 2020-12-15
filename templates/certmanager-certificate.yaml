@@ -12,7 +12,6 @@ spec:
   dnsNames:
     - {{ .Values.LMS_HOST }}
     - {{ .Values.CMS_HOST }}
-    - notes.{{ .Values.LMS_HOST }}
     - preview.{{ .Values.LMS_HOST }}
   issuerRef:
     kind: Issuer
@@ -24,6 +23,5 @@ spec:
         domains:
           - {{ .Values.LMS_HOST }}
           - {{ .Values.CMS_HOST }}
-          - notes.{{ .Values.LMS_HOST }}
           - preview.{{ .Values.LMS_HOST }}
 {{- end -}}
