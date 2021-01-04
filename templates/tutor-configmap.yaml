@@ -13,3 +13,5 @@ data:
 {{ printf "%s: %s" . ($value | quote) | nindent 2 }}
 {{- end -}}
 {{- end -}}
+{{ printf "CMS_CFG: /openedx/config/cms.env.json" | nindent 2 }}
+{{ printf "LMS_CFG: /openedx/config/lms.env.json" | nindent 2 }}

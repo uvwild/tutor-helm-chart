@@ -22,6 +22,7 @@ If release name contains chart name it will be used as a full name.
 {{- printf "%s-%s" .Release.Name $name | trunc 63 | trimSuffix "-" -}}
 {{- end -}}
 {{- end -}}
+
 {{- end -}}
 
 {{- define "tutor.domainname" -}}
@@ -54,18 +55,20 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 
 {{/*
 Spec for a container that renders tutor config files into a volume.
+v11.0.2 uses /opt/tutor as config base
+  args: [ "env|sort;pwd;tutor config save;find /opt/tutor -ls;cat /opt/tutor/env/apps/nginx/*"]
 */}}
 {{- define "tutor.config.container" -}}
 - name: tutor-config
   image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
   imagePullPolicy: {{ .Values.image.pullPolicy }}
-  args: [ "env|sort;pwd;tutor config save;cat /root/.local/share/tutor/env/apps/nginx/*"]
+  args: [ "env|sort;pwd;tutor config save;"]
   envFrom:
     - configMapRef:
         name: {{ template "tutor.fullname" . }}
   volumeMounts:
     - name: tutor-config
-      mountPath: /root/.local/share/tutor
+      mountPath: /opt/tutor
 {{- end -}}
 
 {{/*

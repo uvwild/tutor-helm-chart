@@ -20,7 +20,7 @@ spec:
       restartPolicy: OnFailure
       containers:
         - name: create-openedx-database
-          image: "{{ .Values.DOCKER_IMAGE_OPENEDX }}"
+          image: "mysql:5.6.50"
           imagePullPolicy: {{ .Values.openedx.image.pullPolicy }}
           envFrom:
             - configMapRef:

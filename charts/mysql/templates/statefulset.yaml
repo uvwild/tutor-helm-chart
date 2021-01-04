@@ -1,6 +1,6 @@
 apiVersion: apps/v1
 kind: StatefulSet
-metadata:
+metadata: 
   name: {{ include "mysql.fullname" . }}
   labels:
     app.kubernetes.io/name: {{ include "mysql.name" . }}

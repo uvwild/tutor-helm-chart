@@ -1,0 +1,90 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "tutor.fullname" . }}-nginx-config
+  labels:
+    app.kubernetes.io/component: nginx-config
+    {{- include "tutor.common.labels" . | nindent 4 }}
+data:
+  _tutor.conf: |-
+    # Allow long domain names
+    server_names_hash_bucket_size 128;
+
+    # Set a short ttl for proxies to allow restarts
+    resolver 127.0.0.11 [::1]:5353 valid=10s;
+
+    # Configure logging to include scheme and server name
+    log_format tutor '$remote_addr - $remote_user [$time_local] $scheme://$host "$request" '
+                     '$status $body_bytes_sent "$http_referer" '
+                     '"$http_user_agent" "$http_x_forwarded_for"';
+
+  cms.conf: |-
+    upstream cms-backend {
+      server cms:8000 fail_timeout=0;
+    }
+
+    server {
+      listen 80;
+      server_name studio.edx.otcdemo.gardener.t-systems.net;
+
+      access_log /var/log/nginx/access.log tutor;
+      client_max_body_size 250M;
+      server_tokens off;
+
+      rewrite ^(.*)/favicon.ico$ /static/images/favicon.ico last;
+
+      location @proxy_to_cms_app {
+        proxy_redirect off;
+        proxy_set_header
+        Host $http_host;
+        proxy_pass http://cms-backend;
+      }
+
+      location / {
+        try_files $uri @proxy_to_cms_app;
+      }
+    }
+
+  extra.conf: ""
+  lms.conf: |-
+    upstream lms-backend {
+      server lms:8000 fail_timeout=0;
+    }
+
+    server  {
+      listen 80;
+      server_name www.edx.otcdemo.gardener.t-systems.net preview.www.edx.otcdemo.gardener.t-systems.net;
+
+      access_log /var/log/nginx/access.log tutor;
+      client_max_body_size 4M;
+      server_tokens off;
+
+      rewrite ^(.*)/favicon.ico$ /static/images/favicon.ico last;
+
+      location @proxy_to_lms_app {
+        proxy_redirect off;
+        proxy_set_header Host $http_host;
+        proxy_pass http://lms-backend;
+      }
+
+      location / {
+        try_files $uri @proxy_to_lms_app;
+      }
+
+      # /login?next=<any image> can be used by 3rd party sites in <img> tags to
+      # determine whether a user on their site is logged into edX.
+      # The most common image to use is favicon.ico.
+      location /login {
+        if ( $arg_next ~* \"favicon.ico\" ) {
+          return 403;
+        }
+        try_files $uri @proxy_to_lms_app;
+      }
+
+      # Need a separate location for the image uploads endpoint to limit upload sizes
+      location ~ ^/api/profile_images/[^/]*/[^/]*/upload$ {
+        try_files $uri @proxy_to_lms_app;
+        client_max_body_size 1049576;
+      }
+    }
+

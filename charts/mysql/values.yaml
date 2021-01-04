@@ -4,7 +4,7 @@
 
 image:
   repository: mysql
-  tag: "5.6.36"
+  tag: "5.6.50"
   pullPolicy: IfNotPresent
 
 nameOverride: ""

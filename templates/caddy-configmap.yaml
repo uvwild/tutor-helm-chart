@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ template "tutor.fullname" . }}-caddy-config
+  labels:
+    app.kubernetes.io/component: caddy-config
+    {{- include "tutor.common.labels" . | nindent 4 }}
+data:
+  Caddyfile: |-
+    www.edx.otcdemo.gardener.t-systems.net:80 {
+        reverse_proxy {{ include "tutor.fullname" . }}-nginx:80
+    }
+    studio.edx.otcdemo.gardener.t-systems.net:80 {
+        reverse_proxy {{ include "tutor.fullname" . }}-nginx:80
+    }
+

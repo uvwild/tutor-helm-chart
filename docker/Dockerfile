@@ -6,7 +6,7 @@ COPY --from=library/docker:19.03 /usr/local/bin/docker /usr/bin/docker
 COPY --from=docker/compose:1.24.0 /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 RUN pip install --upgrade pip
-RUN pip install tutor-openedx==11.0.2
+RUN pip install tutor-openedx==11.0.3
 RUN mkdir /opt/tutor
 ENV TUTOR_ROOT /opt/tutor
 

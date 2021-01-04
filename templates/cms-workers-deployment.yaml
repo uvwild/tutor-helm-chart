@@ -25,17 +25,23 @@ spec:
       initContainers:
         {{- include "tutor.config.container" . | nindent 8 }}
       containers:
-        - name: cms-workers
+        - name: cms-worker
           image: "{{ .Values.DOCKER_IMAGE_OPENEDX }}"
           imagePullPolicy: {{ .Values.openedx.image.pullPolicy }}
           env:
+            - name: CMS_CFG
+              value: /openedx/config/cms.env.json
+            - name: LMS_CFG
+              value: /openedx/config/lms.env.json
             - name: SERVICE_VARIANT
               value: cms
             - name: SETTINGS
-              value: tutor.development
+              value: cms.envs.tutor.production
+            - name: DJANGO_SETTINGS_MODULE
+              value: cms.envs.tutor.production              
             - name: C_FORCE_ROOT # run celery tasks as root #nofear
               value: "1"
-          command: ["./manage.py", "cms", "celery", "worker", "--loglevel=info", "--hostname=edx.cms.core.default.%%h", "--maxtasksperchild=100"]
+          command: ["celery", "worker", "--app=cms.celery", "--loglevel=INFO", "--hostname=edx.cms.core.default.%%h", "--maxtasksperchild=100", "--exclude-queues=edx.lms.core.default"]
           volumeMounts:
             - name: tutor-config
               mountPath: /openedx/edx-platform/cms/envs/tutor/

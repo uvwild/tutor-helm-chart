@@ -24,7 +24,12 @@ spec:
           emptyDir: {}
         - name: tutor-config
           emptyDir: {}
+        - name: nginx-config          
+          configMap:
+            defaultMode: 420
+            name: {{ template "tutor.fullname" . }}-nginx-config
       initContainers:
+        {{- include "tutor.config.container" . | nindent 8 }}
         - name: openedx-assets
           image: "{{ .Values.DOCKER_IMAGE_OPENEDX }}"
           imagePullPolicy: {{ .Values.openedx.image.pullPolicy }}
@@ -32,7 +37,6 @@ spec:
           volumeMounts:
             - name: openedx-assets
               mountPath: /var/www/openedx
-        {{- include "tutor.config.container" . | nindent 8 }}
       containers:
         - name: nginx
           image: "{{ .Values.DOCKER_IMAGE_NGINX }}"
@@ -44,7 +48,9 @@ spec:
             - name: openedx-assets
               mountPath: /var/www/openedx
               readOnly: true
-            - name: tutor-config
-              mountPath: /etc/nginx/conf.d/
-              subPath: env/apps/nginx
-              readOnly: true
+            - mountPath: /etc/nginx/conf.d/
+              name: nginx-config
+            # - name: tutor-config
+            #   mountPath: /etc/nginx/conf.d/
+            #   subPath: env/apps/nginx
+            #   readOnly: true

@@ -18,5 +18,11 @@ helm --debug install --namespace helmtutor  --generate-name .
 1. missing required field "serviceName" in io.k8s.api.apps.v1.StatefulSetSpec
 1. Importing 'lms.djangoapps.courseware' as 'courseware' is no longer supported forces overhang images
 
+### change worker commands to celery binary
+
+celery worker --app=cms.celery --loglevel=INFO --hostname=edx.cms.core.default.%%h --maxtasksperchild=100 --exclude-queues=edx.lms.core.default
+
+celery worker --app=cms.celery --loglevel=INFO --hostname=edx.lms.core.default.%%h --maxtasksperchild=100 --exclude-queues=edx.cms.core.default
+
 ## todo
 1. configure DJANGO_SETTINGS_MODULE to avoid import of debug_

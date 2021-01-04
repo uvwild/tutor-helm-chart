@@ -20,5 +20,8 @@
 .idea/
 *.tmproj
 .vscode/
-deployments-gen/
+deployments/
 docker/
+jobs/
+services/
+statefulsets/

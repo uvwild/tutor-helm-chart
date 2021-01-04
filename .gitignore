@@ -1,3 +1,8 @@
+*.py
 .DS_Store
 deployments-gen*
 env
+deployments
+jobs
+services
+statefulsets
